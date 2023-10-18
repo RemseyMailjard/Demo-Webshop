@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Card with Bootstrap</title>
+
+    <!-- Link to Bootstrap CSS via CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Product Card -->
+<div class="container mt-5">
+    <div class="card" style="width: 18rem;">
+        <img src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d5eb2104-3552-41c8-94f9-db2580a955c0/kd16-basketball-shoes-H3gcDG.png" class="card-img-top" alt="Product Image">
+        <div class="card-body">
+            <h5 class="card-title">Product Name</h5>
+            <p class="card-text">$Product Price</p>
+            <!-- Buttons -->
+            <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+            <button class="btn btn-secondary" onclick="showCartItems()">Cart Items</button>
+            <button class="btn btn-success" onclick="purchase()">Purchase</button>
+        </div>
+    </div>
+</div>
+
+<!-- Optional: Include Bootstrap JS and Popper.js via CDN for added functionality -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    let cartCount = 0; // To keep track of the number of items in the cart
+
+    function addToCart() {
+        cartCount++;
+        alert('Item added to cart!');
+    }
+
+    function showCartItems() {
+        alert('You have ' + cartCount + ' items in your cart.');
+    }
+
+    function purchase() {
+        if (cartCount === 0) {
+            alert('Your cart is empty!');
+        } else {
+            alert('Thank you for your purchase! You bought ' + cartCount + ' items.');
+            cartCount = 0; // Reset the cart after purchase
+        }
+    }
+</script>
+
+</body>
+</html>
