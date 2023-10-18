@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe-themed JavaScript Examples with Shopping Cart</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+<!-- Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-shoe-prints"></i> Shoe Store</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto"> <!-- Using me-auto to push subsequent items to the right -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-box-open"></i> Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Create Account</a>
+                </li>
+                <!-- Dropdown for User Profile -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userProfileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i> User Profile
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userProfileDropdown">
+                        <li><a class="dropdown-item" href="#">View Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Order History</a></li>
+                        <li><a class="dropdown-item" href="#">Wishlist</a></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Shoe card -->
+            <div class="card mb-4">
+                <img src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/5d5b15c1-c94e-42b8-b8cc-b3e4b5ab7ea2/air-max-90-ltr-zapatillas-nino-a-xzQRgm.png" alt="Shoe Image" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title" id="objExample"></h5>
+                    <p class="card-text">Price: $<span id="shoePrice"></span></p>
+                    <button class="btn btn-primary" onclick="addToCart(shoe)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <!-- Cart items -->
+            <h2>Shopping Cart</h2>
+            <button class="btn btn-info mb-2" onclick="displayCart()">Display Cart Items</button>
+            <button class="btn btn-danger mb-2 ml-2" onclick="clearCart()">Clear Cart</button>
+            <ul class="list-group mb-2" id="cart"></ul>
+            <p>Total Price: $<span id="totalPrice">0</span></p>
+        </div>
+        
+    </div>
+</div>
+<!-- Footer -->
+<footer class="mt-5 bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Subscribe to our Newsletter</h4>
+                <p>Stay updated with the latest shoe releases, offers, and more.</p>
+                <form class="d-flex">
+                    <input type="email" class="form-control me-2" placeholder="Enter your email">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <!-- You can add other content here, like links, contact info, etc. -->
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-envelope"></i> support@shoestore.com</p>
+                <p><i class="fas fa-phone"></i> +123-456-7890</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    let cart = [];
+
+let shoe = {
+    brand: "Nike",
+    size: 10,
+    color: "Red",
+    price: 100  // Added price property
+};
+document.getElementById('objExample').textContent = `${shoe.brand} - Size ${shoe.size}, Color ${shoe.color}`;
+document.getElementById('shoePrice').textContent = shoe.price;
+
+function addToCart(item) {
+    cart.push(item);
+    alert(`${item.brand} shoe added to cart.`);
+    displayCart();
+}
+
+function displayCart() {
+    let cartList = document.getElementById('cart');
+    cartList.innerHTML = ""; // Clearing the cart display
+
+    let total = 0;
+    cart.forEach((item, index) => {
+        total += item.price;
+        let listItem = document.createElement('li');
+        listItem.className = 'list-group-item';
+        listItem.textContent = `${item.brand} shoe in ${item.color} color of size ${item.size}. Price: $${item.price} `;
+        
+        let removeBtn = document.createElement('button');
+        removeBtn.className = 'btn btn-sm btn-danger';
+        removeBtn.textContent = "Remove";
+        removeBtn.onclick = () => removeFromCart(index);
+        
+        listItem.appendChild(removeBtn);
+        cartList.appendChild(listItem);
+    });
+
+    document.getElementById('totalPrice').textContent = total;
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1); // Removes the item at the specified index
+    displayCart(); // Update the displayed cart
+}
+
+function clearCart() {
+    cart = [];
+    displayCart();
+}
+
+
+
+
+    function showCartItems() {
+        alert('You have ' + cartCount + ' items in your cart.');
+    }
+
+    function purchase() {
+        if (cartCount === 0) {
+            alert('Your cart is empty!');
+        } else {
+            alert('Thank you for your purchase! You bought ' + cartCount + ' items.');
+            cartCount = 0; // Reset the cart after purchase
+        }
+    }
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

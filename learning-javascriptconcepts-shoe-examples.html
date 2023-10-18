@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe-themed JavaScript Examples</title>
+    <style>
+        .example {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="example">
+    <h2>Object Example</h2>
+    <h3>Single Shoe Object</h3>
+    <p id="objExample"></p>
+
+    <h3>Array of Shoe Objects</h3>
+    <p id="arrayOfObjExample"></p>
+</div>
+
+<div class="example">
+    <h2>String Example</h2>
+    <p id="strExample"></p>
+</div>
+
+<div class="example">
+    <h2>Number Example</h2>
+    <p id="numExample"></p>
+</div>
+
+<div class="example">
+    <h2>Boolean Example</h2>
+    <p id="boolExample"></p>
+</div>
+
+<div class="example">
+    <h2>Function Example</h2>
+    <button onclick="displayShoeDetails(shoe)">Display Shoe Details</button>
+    <p id="funcExample"></p>
+</div>
+
+<div class="example">
+    <h2>Date Example</h2>
+    <p id="dateExample"></p>
+</div>
+
+<!-- ... Additional divs for other examples ... -->
+
+<script>
+    // Single Shoe Object Example
+    let shoe = {
+        brand: "Nike",
+        size: 10,
+        color: "Red"
+    };
+    document.getElementById('objExample').textContent = JSON.stringify(shoe);
+
+    // Array of Shoe Objects Example
+    let shoes = [
+        /* ... */
+    ];
+    document.getElementById('arrayOfObjExample').textContent = JSON.stringify(shoes, null, 2);
+
+    // String Example
+    let shoeDescription = "Nike Air in size 10 and red color.";
+    document.getElementById('strExample').textContent = shoeDescription;
+
+    // Number Example
+    let shoeSize = 10;
+    document.getElementById('numExample').textContent = "Shoe Size: " + shoeSize;
+
+    // Boolean Example
+    let isInStock = true;
+    document.getElementById('boolExample').textContent = "Is in stock? " + isInStock;
+
+    // Function Example
+    function displayShoeDetails(shoe) {
+        document.getElementById('funcExample').textContent = `${shoe.brand} in size ${shoe.size} and ${shoe.color} color.`;
+    }
+
+    // Date Example
+    let releaseDate = new Date(2023, 0, 1);
+    document.getElementById('dateExample').textContent = "Release Date: " + releaseDate.toDateString();
+
+    // ... Additional JS for other examples ...
+
+</script>
+
+</body>
+</html>
