@@ -1,0 +1,22 @@
+body {
+    background-color: #4a154b;
+    color: white;
+}
+
+.navbar-brand {
+    color:white;
+}
+
+.navbar-nav {
+    color: white !important;
+  }
+
+
+.navbar-nav .nav-link{
+    color:white;
+  }
+
+footer {
+    color: white;
+
+}
